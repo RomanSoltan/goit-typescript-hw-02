@@ -1,0 +1,20 @@
+/* Loader.module.css */
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.spinner {
+  /* Додаткові стилі для спінера */
+  animation: spin 1.5s infinite linear;
+}
+
+/* Якщо ви хочете додати анімацію на спінер */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

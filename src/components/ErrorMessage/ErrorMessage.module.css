@@ -1,0 +1,20 @@
+/* ErrorMessage.module.css */
+.errorMessage {
+  color: #fff;
+  background-color: #f44336; /* Червоний фон для помилки */
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out; /* Додаємо анімацію для плавного появлення */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
