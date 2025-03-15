@@ -8,15 +8,16 @@ import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import Loader from '../Loader/Loader';
 import ImageModal from '../ImageModal/ImageModal';
 import toast from 'react-hot-toast';
+import { Photo } from '../../types';
 
 function App() {
-  const [photos, setPhotos] = useState([]);
-  const [query, setQuery] = useState('');
-  const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [selectedPhoto, setSelectedPhoto] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [photos, setPhotos] = useState<Photo[]>([]);
+  const [query, setQuery] = useState<string>('');
+  const [page, setPage] = useState<number>(1);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
     if (!query) return;
@@ -35,7 +36,7 @@ function App() {
     getData();
   }, [query, page]);
 
-  const handleSetQuery = newQuery => {
+  const handleSetQuery = (newQuery: string): void => {
     if (query === newQuery) {
       toast.error('Request already exist');
       return;
@@ -49,13 +50,13 @@ function App() {
     setPage(prev => prev + 1);
   };
 
-  const openModal = photo => {
+  const openModal = (photo: Photo): void => {
     if (isModalOpen) return;
     setSelectedPhoto(photo);
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setSelectedPhoto(null);
     setIsModalOpen(false);
   };

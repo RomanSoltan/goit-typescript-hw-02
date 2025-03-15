@@ -2,6 +2,10 @@ import { useState } from 'react';
 import s from './SearchBar.module.css';
 import toast from 'react-hot-toast';
 
+// interface SearchBarProps {
+//   onSubmit: (query: string) => void;
+// }
+
 const SearchBar = ({ onSubmit }) => {
   const [value, setValue] = useState('');
 
