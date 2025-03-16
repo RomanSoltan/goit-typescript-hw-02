@@ -1,6 +1,11 @@
-import { ImageGalleryProps } from '../../types';
+import { Photo } from '../../types';
 import ImageCard from '../ImageCard/ImageCard';
 import s from './ImageGallery.module.css';
+
+interface ImageGalleryProps {
+  photos: Photo[];
+  openModal: (photo: Photo) => void;
+}
 
 const ImageGallery = ({ photos, openModal }: ImageGalleryProps) => {
   return (

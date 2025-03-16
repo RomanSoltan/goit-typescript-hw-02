@@ -1,5 +1,12 @@
+import { Photo } from '../../types';
 import s from './ImageModal.module.css';
 import Modal from 'react-modal';
+
+interface ImageModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  photo: Photo | null;
+}
 
 const customStyles = {
   content: {
@@ -21,7 +28,7 @@ const customStyles = {
 
 Modal.setAppElement('#root');
 
-const ImageModal = ({ isOpen, onClose, photo }) => {
+const ImageModal = ({ isOpen, onClose, photo }: ImageModalProps) => {
   if (!isOpen || !photo) return null;
   const {
     urls: { regular },

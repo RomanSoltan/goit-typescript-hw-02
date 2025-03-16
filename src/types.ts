@@ -1,14 +1,15 @@
 export interface Photo {
   id: string;
-  alt_description: string;
-  small: string;
+  alt_description: string | null;
+  urls: { small: string; regular?: string };
 }
 
 export interface ErrorProps {
   message?: string;
 }
 
-export interface ImageGalleryProps {
-  photos: Photo[];
-  openModal: (photo: Photo) => void;
+export interface LoaderProps {
+  height?: string;
+  width?: string;
+  color?: string;
 }

@@ -1,6 +1,11 @@
+import { Photo } from '../../types';
 import s from './ImageCard.module.css';
 
-const ImageCard = ({ photo }) => {
+interface ImageCardProps {
+  photo: Photo;
+}
+
+const ImageCard = ({ photo }: ImageCardProps) => {
   const {
     urls: { small },
     alt_description,
