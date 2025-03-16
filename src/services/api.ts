@@ -14,19 +14,16 @@ export const fetchImages = async (
   perPage = 15,
 ): Promise<Photo[]> => {
   try {
-    const { data }: { data: UnsplashResponse } = await axios.get(
-      `${BASE_URL}`,
-      {
-        params: {
-          client_id: API_KEY,
-          query,
-          page,
-          per_page: perPage,
-          orientation: 'landscape',
-          lang: 'en',
-        },
+    const { data } = await axios.get<UnsplashResponse>(`${BASE_URL}`, {
+      params: {
+        client_id: API_KEY,
+        query,
+        page,
+        per_page: perPage,
+        orientation: 'landscape',
+        lang: 'en',
       },
-    );
+    });
     return data.results;
   } catch (error: any) {
     console.error('Error fetching images:', error.response || error.message);
