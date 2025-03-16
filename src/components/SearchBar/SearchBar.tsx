@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 import s from './SearchBar.module.css';
 import toast from 'react-hot-toast';
 
-// interface SearchBarProps {
-//   onSubmit: (query: string) => void;
-// }
+interface SearchBarProps {
+  onSubmit: (query: string) => void;
+}
 
-const SearchBar = ({ onSubmit }) => {
-  const [value, setValue] = useState('');
+const SearchBar = ({ onSubmit }: SearchBarProps) => {
+  const [value, setValue] = useState<string>('');
 
-  const handleSubmit = e => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (!value.trim()) {
       toast.error('Please enter a valid search term');
