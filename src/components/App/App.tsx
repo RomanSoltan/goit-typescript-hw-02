@@ -18,16 +18,21 @@ function App() {
   const [isError, setIsError] = useState<boolean>(false);
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [hasMorePhotos, setHasMorePhotos] = useState<boolean>(true);
 
   useEffect(() => {
     if (!query) return;
-    const getData = async () => {
+    const getData = async (): Promise<void> => {
       try {
         setIsLoading(true);
         setIsError(false);
-        const results = await fetchImages(query, page);
+        const results: Photo[] = await fetchImages(query, page);
+
+        if (!results.length) {
+          setHasMorePhotos(false);
+        }
         setPhotos(prev => [...prev, ...results]);
-      } catch {
+      } catch (error: unknown) {
         setIsError(true);
       } finally {
         setIsLoading(false);
@@ -44,6 +49,7 @@ function App() {
     setQuery(newQuery);
     setPage(1);
     setPhotos([]);
+    setHasMorePhotos(true);
   };
 
   const onLoadMore = () => {
@@ -67,7 +73,9 @@ function App() {
       <ImageGallery photos={photos} openModal={openModal} />
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
-      {photos.length > 0 && <LoadMoreBtn onClick={onLoadMore} />}
+      {hasMorePhotos && photos.length > 0 && (
+        <LoadMoreBtn onClick={onLoadMore} />
+      )}
       <ImageModal
         isOpen={isModalOpen}
         onClose={closeModal}
