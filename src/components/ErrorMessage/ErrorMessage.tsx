@@ -1,9 +1,12 @@
+import { ErrorProps } from '../../types';
 import s from './ErrorMessage.module.css';
 
-const ErrorMessage = () => {
+const ErrorMessage = ({
+  message = 'Something went wrong! Try again later...',
+}: ErrorProps) => {
   return (
     <div className={s.errorMessage}>
-      <p>Something went wrong! Try again later...</p>
+      <p>{message}</p>
     </div>
   );
 };
